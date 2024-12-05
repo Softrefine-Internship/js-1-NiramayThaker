@@ -15,24 +15,6 @@
 //  { title: 'Python', author: 'Guido' }
 // ]
 
-
-const checkSimilar = function(arr) {
-    let op_arr = []
-
-    for (let i = 0; i < arr.length; i++) {
-        for (let j = i + 1; j < arr.length; j++) {
-            if(op_arr.includes(JSON.stringify(arr[j]))) {
-                console.log("--")
-            }
-            else {
-                op_arr.push(arr[i]);
-            }
-        }
-    }
-    // return op_arr
-}
-
-
 array = [
     { title: "C++", author: "Bjarne" },
     { title: "Java", author: "James" },
@@ -40,6 +22,22 @@ array = [
     { title: "Java", author: "James" },
 ];
 
-// console.log(JSON.stringify(array[1]) === JSON.stringify(array[3])); 
+const removeDuplicate = (array) => {
+    for (let ele = 0; ele < array.length; ele++) {
+      let curr = array.splice(ele, 1);
+      let flag = false;
+      for (let j = 0; j < array.length; j++) {
+        const ele = array[j];
+  
+        if (ele.author == curr[0].author && ele.title == curr[0].title) {
+          flag = true;
+        }
+      }
 
-console.log(checkSimilar(array));
+      if (!flag) 
+        array.splice(ele, 0, ...curr);
+    }
+    return array;
+}
+
+console.log(removeDuplicate(array));
