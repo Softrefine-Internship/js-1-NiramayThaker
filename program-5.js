@@ -11,3 +11,26 @@ Given an integer array flowerbed containing 0's and 1's, where 0 means empty and
 // Example 2:
 // Input: flowerbed = [1,0,0,0,1], n = 2
 // Output: false
+
+
+const checkEmpty = (flowerBed, n) => {
+
+    for (let i = 1; i < flowerBed.length - 1; i++) {
+        // console.log(`${flowerBed[i - 1]} | ${i} | ${flowerBed[i + 1]}`);
+
+        if(flowerBed[i - 1] == 0 && flowerBed[i + 1] == 0)
+        {
+            flowerBed[i] = 1;
+            n--;
+        } 
+    }
+    if(n > 0) 
+        return false;
+    return true;
+}
+
+n = 1; // True
+// n = 2; // False
+
+flowerBed = [1,0,0,0,1];
+console.log(checkEmpty(flowerBed, n));

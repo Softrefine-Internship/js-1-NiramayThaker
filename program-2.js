@@ -2,3 +2,12 @@
 
 // Sample Input: [1, 2, [3, 4], [5, [6, 7]]];
 // Expected Output: [1, 2, 3, 4, 5, 6, 7];
+
+
+const flatten_arr = function(arr) {
+    
+}
+
+arr = [1, 2, [3, 4], [5, [6, 7]]];
+let ans = flatten_arr(arr)
+console.log(ans)
