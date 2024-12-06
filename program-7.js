@@ -15,29 +15,43 @@
 //  { title: 'Python', author: 'Guido' }
 // ]
 
-array = [
-    { title: "C++", author: "Bjarne" },
-    { title: "Java", author: "James" },
-    { title: "Python", author: "Guido" },
-    { title: "Java", author: "James" },
-];
+// array = [
+//     { title: "C++", author: "Bjarne" },
+//     { title: "Java", author: "James" },
+//     { title: "Python", author: "Guido" },
+//     { title: "Java", author: "James" },
+// ];
+
+// array = [{id:1,num:[1,2,3]},
+//     {id:1,num:[1,2,3]},
+//     {id:2,num:[1,2,3,4]}
+// ];
 
 const removeDuplicate = (array) => {
-    for (let ele = 0; ele < array.length; ele++) {
-      let curr = array.splice(ele, 1);
-      let flag = false;
-      for (let j = 0; j < array.length; j++) {
-        const ele = array[j];
-  
-        if (ele.author == curr[0].author && ele.title == curr[0].title) {
-          flag = true;
-        }
-      }
-
-      if (!flag) 
-        array.splice(ele, 0, ...curr);
+  const temp = new Set();
+  return array.filter(item => {
+    const key = JSON.stringify(item);  
+    if (temp.has(key)) {
+      return false; 
+    } else {
+      temp.add(key); 
+      return true;  
     }
-    return array;
-}
+  });
+};
+
+const array = [
+  { id: 1, num: [1, 2, 3] },
+  { id: 1, num: [1, 2, 3] },
+  { id: 2, num: [1, 2, 3, 4] }
+];
+
+
+// array = [
+//   { title: "C++", author: "Bjarne" },
+//   { title: "Java", author: "James" },
+//   { title: "Python", author: "Guido" },
+//   { title: "Java", author: "James" },
+// ];
 
 console.log(removeDuplicate(array));

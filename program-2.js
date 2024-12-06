@@ -3,14 +3,24 @@
 // Sample Input: [1, 2, [3, 4], [5, [6, 7]]];
 // Expected Output: [1, 2, 3, 4, 5, 6, 7];
 
+// const flatten_arr = function(arr) 
+// {
+//     return arr.flat(Infinity)
+// }
 
+function flattenArray(arr) {
+    let result = [];
 
-const flatten_arr = function(arr) 
-{
-    return arr.flat(Infinity)
+    arr.forEach(item => {
+        if (Array.isArray(item)) {
+            result = result.concat(flattenArray(item));
+        } else {
+            result.push(item);
+        }
+    });
+    
+    return result;
 }
 
-arr = [1, 2, [3, 4], [5, [6, 7]]];
-
-let ans = flatten_arr(arr)
-console.log(ans)
+const input = [1, 2, [3, 4], [5, [6, 7]]];
+console.log(flattenArray(input))

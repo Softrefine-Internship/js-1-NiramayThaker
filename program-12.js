@@ -6,34 +6,15 @@
 
 // Expected Output: c = [3, 10, 100]
 
+const getDifference = (arr1, arr2) => {
+    let diff1 = arr1.filter(item => !arr2.includes(item));
+    let diff2 = arr2.filter(item => !arr1.includes(item));
 
-const getCnt = (arr) => {    
-    let cnt = {};
-
-    for (let i = 0; i < arr.length; i++) {
-        let item = arr[i];
-    
-        if (cnt[item])
-            cnt[item] += 1;
-        
-        else 
-            cnt[item] = 1; 
-    }
-    
-    return cnt;    
-}
+    return [...diff1, ...diff2];
+};
 
 let arr1 = [1, 2, 3];
 let arr2 = [100, 2, 1, 10];
-let ans = [];
-let arr =  arr1.concat(arr2)
 
-let allCnt = getCnt(arr);
-
-for (let itm in allCnt) {
-    if(allCnt[itm] == 1) {
-        ans.push(Number(itm));
-    }
-}
-
-console.log(ans);
+let result = getDifference(arr1, arr2);
+console.log(result); 

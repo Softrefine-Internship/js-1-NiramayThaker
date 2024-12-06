@@ -12,25 +12,31 @@ Given an integer array flowerbed containing 0's and 1's, where 0 means empty and
 // Input: flowerbed = [1,0,0,0,1], n = 2
 // Output: false
 
-
 const checkEmpty = (flowerBed, n) => {
+    for (let i = 0; i < flowerBed.length; i++) {
 
-    for (let i = 1; i < flowerBed.length - 1; i++) {
-        // console.log(`${flowerBed[i - 1]} | ${i} | ${flowerBed[i + 1]}`);
+        if (flowerBed[i] === 0) {
+            const prev = (i === 0 || flowerBed[i - 1] === 0); 
+            const next = (i === flowerBed.length - 1 || flowerBed[i + 1] === 0); 
 
-        if(flowerBed[i - 1] == 0 && flowerBed[i + 1] == 0)
-        {
-            flowerBed[i] = 1;
-            n--;
-        } 
+            if (prev && next) {
+                flowerBed[i] = 1;
+                n--; 
+
+                if (n === 0) return true; 
+                i++; 
+            }
+        }
     }
-    if(n > 0) 
-        return false;
-    return true;
+ 
+    return (n <= 0);
 }
 
-n = 1; // True
-// n = 2; // False
-
-flowerBed = [1,0,0,0,1];
+n = 3; 
+flowerBed = [1, 0, 0, 0, 0, 0, 1, 0];
 console.log(checkEmpty(flowerBed, n));
+
+n = 2;
+flowerBed = [1, 0, 1, 0, 1, 0, 1, 0];
+console.log(checkEmpty(flowerBed, n)); 
+
